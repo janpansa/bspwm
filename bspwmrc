@@ -50,17 +50,22 @@ feh --bg-scale ~/.config/bspwm/wallpaper/current.jpg
 # Launch stuff
 #----------------------------
 
+#----------------------------
 # first, lets setup ncmpcpp
+#----------------------------
 
-bspc rule -a URxvt desktop=^4 focus=off
-urxvt -e ncmpcpp -s visualizer &
+bspc rule -a URxvt desktop=^4 split_ratio=0.50 focus=off &
+sleep 0.1
+urxvt -e ncmpcpp -s playlist &
+sleep 0.1
 urxvt -e ncmpcpp -s browser &
-bspc rule -a split_ratio=0.8
-urxvt -e  ncmpcpp -s playlist &
-
-bspc rule -r split_ratio=0.8
-bspc rule -a split_ratio=0.5
-bspc rule -r URxvt desktop=^4 focus=off
+sleep 0.1
+bspc rule -a URxvt desktop=^4 split_ratio=0.80 focus=off &
+sleep 0.1
+urxvt -e ncmpcpp -s visualizer &
+sleep 0.2
+bspc rule -r URxvt desktop=^4 split_ratio=0.50 focus=off &
+bspc rule -r URxvt desktop=^4 split_ratio=0.80 focus=off &
 
 compton &
 guake &
