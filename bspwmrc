@@ -36,7 +36,7 @@ bspc monitor -d main internet code music manga anime series games misc edit
 # Rules
 #----------------------------
 
-bspc rule -a Gimp desktop=^10 follow=on floating=on
+bspc rule -a gimp-2.8 desktop=^10 follow=on floating=on
 bspc rule -a Steam desktop=^8
 bspc rule -a sun-awt-X11-XFramePeer desktop=^3
 
