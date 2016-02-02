@@ -10,7 +10,7 @@
 #----------------------------
 
 bspc config border_width 1
-bspc config window_gap 25
+bspc config window_gap 35
 bspc config split_ratio         0.50
 bspc config borderless_monocle  true
 bspc config gapless_monocle     true
@@ -21,9 +21,9 @@ bspc config focus_follows_pointer false
 # Border Colors
 #----------------------------
 
-bspc config normal_border_color "#3f3e3b"
-bspc config active_border_color "#dd7162"
-bspc config focused_border_color "#dd7162"
+bspc config normal_border_color "#141414"
+bspc config active_border_color "#64979c"
+bspc config focused_border_color "#64979c"
 bspc config presel_border_color "#8c8c8c"
 
 #----------------------------
@@ -54,18 +54,38 @@ feh --bg-scale ~/.config/bspwm/wallpaper/current.jpg
 # first, lets setup ncmpcpp
 #----------------------------
 
+
 bspc rule -a URxvt desktop=^4 split_ratio=0.50 focus=off &
-sleep 0.1
-urxvt -e ncmpcpp -s playlist &
-sleep 0.1
-urxvt -e ncmpcpp -s browser &
-sleep 0.1
-bspc rule -a URxvt desktop=^4 split_ratio=0.80 focus=off &
-sleep 0.1
 urxvt -e ncmpcpp -s visualizer &
-sleep 0.2
+sleep 0.5
+urxvt -e ncmpcpp -s browser &
+sleep 0.5
+bspc rule -a URxvt desktop=^4 split_ratio=0.80 focus=off &
+sleep 0.5
+urxvt -e ncmpcpp -s playlist &
+sleep 0.5
 bspc rule -r URxvt desktop=^4 split_ratio=0.50 focus=off &
 bspc rule -r URxvt desktop=^4 split_ratio=0.80 focus=off &
+bspc desktop=^4 -f --rotate 180
+
+#Maak die window_gap vir my music desktop net reg :)
+for w in $(bspc query -W -d music); do bspc config -w $w window_gap 130; done
+
+#nou roteer music desktop
+bspc desktop music --rotate 180;
+
+#nou maak ons die laaste window kleiner
+
+bspc desktop ^4 -f
+
+bspc window -e up +50
+bspc window -e up +50
+bspc window -e up +50
+bspc window -e up +50
+bspc window -e up +50
+
+bspc desktop ^1 -f
+
 
 compton &
 guake &
