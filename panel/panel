@@ -18,6 +18,7 @@ xtitle -sf 'T%s' > "$PANEL_FIFO" &
 
 LIGHTGREY="%{F#FFC5C8C6}"
 LIGHTRED="%{F#FFCC6666}"
+LIGHTBLUE="%{F#FF64979C}"
 
 panel_volume()
 {
@@ -25,48 +26,48 @@ panel_volume()
         volStatus=$(amixer get Master | tail -n 1 | cut -d '[' -f 3 | sed 's/].*//g')
         volLevel=$(amixer get Master | tail -n 1 | cut -d '[' -f 2 | sed 's/\%].*//g')
         case $volLevel in
-		100)    if [ "$volStatus" == "on" ]; then echo -e '\uf027' $LIGHTGREY$volLevel
-	else echo -e '\uf026' $LIGHTRED$volLevel
+		100)    if [ "$volStatus" == "on" ]; then echo -e $LIGHTBLUE'\uf027' $LIGHTGREY$volLevel
+	else echo -e $LIGHTBLUE'\uf026' $LIGHTRED$volLevel
                         fi
                         ;;
-		[0-9]) if [ "$volStatus" == "on" ]; then echo -e '\uf027' $LIGHTGREY$volLevel
-		else echo -e '\uf026' $LIGHTRED$volLevel
+		[0-9]) if [ "$volStatus" == "on" ]; then echo -e $LIGHTBLUE'\uf027' $LIGHTGREY$volLevel
+		else echo -e $LIGHTBLUE'\uf026' $LIGHTRED$volLevel
                         fi
                         ;;
-		1*) if [ "$volStatus" == "on" ]; then echo -e '\uf027' $LIGHTGREY$volLevel
-		else echo -e '\uf026' $LIGHTRED$volLevel
+		1*) if [ "$volStatus" == "on" ]; then echo -e $LIGHTBLUE'\uf027' $LIGHTGREY$volLevel
+		else echo -e $LIGHTBLUE'\uf026' $LIGHTRED$volLevel
                         fi
                         ;;
-		2*) if [ "$volStatus" == "on" ]; then echo -e '\uf027' $LIGHTGREY$volLevel
-		else echo -e '\uf026' $LIGHTRED$volLevel
+		2*) if [ "$volStatus" == "on" ]; then echo -e $LIGHTBLUE'\uf027' $LIGHTGREY$volLevel
+		else echo -e $LIGHTBLUE'\uf026' $LIGHTRED$volLevel
                         fi
                         ;;
-		3*) if [ "$volStatus" == "on" ]; then echo -e '\uf027'  $LIGHTGREY$volLevel
-		else echo -e '\uf026' $LIGHTRED$volLevel
+		3*) if [ "$volStatus" == "on" ]; then echo -e $LIGHTBLUE'\uf027'  $LIGHTGREY$volLevel
+		else echo -e $LIGHTBLUE'\uf026' $LIGHTRED$volLevel
                         fi
                         ;;
-		4*) if [ "$volStatus" == "on" ]; then echo -e '\uf027'  $LIGHTGREY$volLevel
-		else echo -e '\uf026' $LIGHTRED$volLevel
+		4*) if [ "$volStatus" == "on" ]; then echo -e $LIGHTBLUE'\uf027'  $LIGHTGREY$volLevel
+		else echo -e $LIGHTBLUE'\uf026' $LIGHTRED$volLevel
                         fi
                         ;;
-		5*) if [ "$volStatus" == "on" ]; then echo -e '\uf028'  $LIGHTGREY$volLevel
-		else echo -e '\uf026' $LIGHTRED$volLevel
+		5*) if [ "$volStatus" == "on" ]; then echo -e $LIGHTBLUE'\uf028'  $LIGHTGREY$volLevel
+		else echo -e $LIGHTBLUE'\uf026' $LIGHTRED$volLevel
                         fi
                         ;;
-		6*) if [ "$volStatus" == "on" ]; then echo -e '\uf028'  $LIGHTGREY$volLevel
-		else echo -e '\uf026' $LIGHTRED$volLevel
+		6*) if [ "$volStatus" == "on" ]; then echo -e $LIGHTBLUE'\uf028'  $LIGHTGREY$volLevel
+		else echo -e $LIGHTBLUE'\uf026' $LIGHTRED$volLevel
                         fi
                         ;;
-		7*) if [ "$volStatus" == "on" ]; then echo -e '\uf028'  $LIGHTGREY$volLevel
-		else echo -e '\uf026' $LIGHTRED$volLevel
+		7*) if [ "$volStatus" == "on" ]; then echo -e $LIGHTBLUE'\uf028'  $LIGHTGREY$volLevel
+		else echo -e $LIGHTBLUE'\uf026' $LIGHTRED$volLevel
                         fi
                         ;;
-		8*) if [ "$volStatus" == "on" ]; then echo -e '\uf028'  $LIGHTGREY$volLevel
-		else echo -e '\uf026' $LIGHTRED$volLevel
+		8*) if [ "$volStatus" == "on" ]; then echo -e $LIGHTBLUE'\uf028'  $LIGHTGREY$volLevel
+		else echo -e $LIGHTBLUE'\uf026' $LIGHTRED$volLevel
                         fi
                         ;;
-		9*) if [ "$volStatus" == "on" ]; then echo -e '\uf028'  $LIGHTGREY$volLevel
-		else echo -e '\uf026' $LIGHTRED$volLevel
+		9*) if [ "$volStatus" == "on" ]; then echo -e $LIGHTBLUE'\uf028'  $LIGHTGREY$volLevel
+		else echo -e $LIGHTBLUE'\uf026' $LIGHTRED$volLevel
                         fi
                         ;;
         esac
@@ -76,7 +77,7 @@ music()
 {
 	#Kyk of daar music is wat speel
 	if [[ $(mpc | head -1) ]]; then
-			echo -e '\uf001' $(mpc | head -1)
+			echo -e $LIGHTBLUE'\uf001'$LIGHTGREY $(mpc | head -1)
 	else
 			echo ""
 	fi
@@ -85,7 +86,7 @@ music()
 #clock
 while true; do
 							#S vir time output in panel
-              echo -e 'S' $(music)   $(panel_volume)   $LIGHTGREY'\uf073' $(date +'%a %d %b %p')   '\uf017' $(date +'%H:%M %p')
+              echo -e 'S' $(music)   $(panel_volume) $LIGHTBLUE'\uf073'$LIGHTGREY $(date +'%a %d %b %p')$LIGHTBLUE'\uf017'$LIGHTGREY $(date +'%H:%M %p')
 done > "$PANEL_FIFO" &
 
 #Include panel colors
