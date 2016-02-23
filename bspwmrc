@@ -9,7 +9,7 @@
 # Some config
 #----------------------------
 
-bspc config border_width 1
+bspc config border_width 2
 bspc config window_gap 35
 bspc config split_ratio         0.50
 bspc config borderless_monocle  true
@@ -21,7 +21,7 @@ bspc config focus_follows_pointer false
 # Border Colors
 #----------------------------
 
-bspc config normal_border_color "#141414"
+bspc config normal_border_color "#1e1e1e"
 bspc config active_border_color "#64979c"
 bspc config focused_border_color "#64979c"
 bspc config presel_border_color "#8c8c8c"

@@ -1,5 +1,7 @@
 #! /bin/sh
 
+ICON_FONT="FontAwesome:size=8"
+
 if [ $(pgrep -cx panel) -gt 1 ] ; then
 	printf "%s\n" "The panel is already running." >&2
 	exit 1
@@ -13,11 +15,82 @@ mkfifo "$PANEL_FIFO"
 bspc config top_padding $PANEL_HEIGHT
 bspc control --subscribe > "$PANEL_FIFO" &
 xtitle -sf 'T%s' > "$PANEL_FIFO" &
-clock -sf 'S%a %d %b %H:%M' > "$PANEL_FIFO" &
+
+LIGHTGREY="%{F#FFC5C8C6}"
+LIGHTRED="%{F#FFCC6666}"
+
+panel_volume()
+{
+
+        volStatus=$(amixer get Master | tail -n 1 | cut -d '[' -f 3 | sed 's/].*//g')
+        volLevel=$(amixer get Master | tail -n 1 | cut -d '[' -f 2 | sed 's/\%].*//g')
+        case $volLevel in
+		100)    if [ "$volStatus" == "on" ]; then echo -e '\uf027' $LIGHTGREY$volLevel
+	else echo -e '\uf026' $LIGHTRED$volLevel
+                        fi
+                        ;;
+		[0-9]) if [ "$volStatus" == "on" ]; then echo -e '\uf027' $LIGHTGREY$volLevel
+		else echo -e '\uf026' $LIGHTRED$volLevel
+                        fi
+                        ;;
+		1*) if [ "$volStatus" == "on" ]; then echo -e '\uf027' $LIGHTGREY$volLevel
+		else echo -e '\uf026' $LIGHTRED$volLevel
+                        fi
+                        ;;
+		2*) if [ "$volStatus" == "on" ]; then echo -e '\uf027' $LIGHTGREY$volLevel
+		else echo -e '\uf026' $LIGHTRED$volLevel
+                        fi
+                        ;;
+		3*) if [ "$volStatus" == "on" ]; then echo -e '\uf027'  $LIGHTGREY$volLevel
+		else echo -e '\uf026' $LIGHTRED$volLevel
+                        fi
+                        ;;
+		4*) if [ "$volStatus" == "on" ]; then echo -e '\uf027'  $LIGHTGREY$volLevel
+		else echo -e '\uf026' $LIGHTRED$volLevel
+                        fi
+                        ;;
+		5*) if [ "$volStatus" == "on" ]; then echo -e '\uf028'  $LIGHTGREY$volLevel
+		else echo -e '\uf026' $LIGHTRED$volLevel
+                        fi
+                        ;;
+		6*) if [ "$volStatus" == "on" ]; then echo -e '\uf028'  $LIGHTGREY$volLevel
+		else echo -e '\uf026' $LIGHTRED$volLevel
+                        fi
+                        ;;
+		7*) if [ "$volStatus" == "on" ]; then echo -e '\uf028'  $LIGHTGREY$volLevel
+		else echo -e '\uf026' $LIGHTRED$volLevel
+                        fi
+                        ;;
+		8*) if [ "$volStatus" == "on" ]; then echo -e '\uf028'  $LIGHTGREY$volLevel
+		else echo -e '\uf026' $LIGHTRED$volLevel
+                        fi
+                        ;;
+		9*) if [ "$volStatus" == "on" ]; then echo -e '\uf028'  $LIGHTGREY$volLevel
+		else echo -e '\uf026' $LIGHTRED$volLevel
+                        fi
+                        ;;
+        esac
+}
+
+music()
+{
+	#Kyk of daar music is wat speel
+	if [[ $(mpc | head -1) ]]; then
+			echo -e '\uf001' $(mpc | head -1)
+	else
+			echo ""
+	fi
+}
+
+#clock
+while true; do
+							#S vir time output in panel
+              echo -e 'S' $(music)   $(panel_volume)   $LIGHTGREY'\uf073' $(date +'%a %d %b %p')   '\uf017' $(date +'%H:%M %p')
+done > "$PANEL_FIFO" &
 
 #Include panel colors
 . panel_colors
 
-cat "$PANEL_FIFO" | panel_bar | lemonbar -g 2560x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
+cat "$PANEL_FIFO" | panel_bar | lemonbar -g 2560x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -f "$ICON_FONT" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
 
 wait
