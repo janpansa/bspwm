@@ -1,8 +1,6 @@
 # bspwm
 My bspwmrc config files. I am no expert, please don't judge me >_<
 
-TODO: Add panel icons.
-
 - [my **bspwm** repo](https://github.com/janpansa/bspwm)
 - [my **sxhkd** repo](https://github.com/janpansa/sxhkd)
 - [my **ncmpcpp** repo](https://github.com/janpansa/ncmpcpp)
