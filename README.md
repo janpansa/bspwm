@@ -7,6 +7,19 @@ TODO: Add panel icons.
 - [my **sxhkd** repo](https://github.com/janpansa/sxhkd)
 - [my **ncmpcpp** repo](https://github.com/janpansa/ncmpcpp)
 
+Panel:
+
+- Left side (Unoccupied, Current, Occupied)
+![alt tag](https://raw.githubusercontent.com/janpansa/bspwm/master/screenshots/left.png)
+
+- Right side (mpd current song, audio level, date, time)
+![alt tag](https://raw.githubusercontent.com/janpansa/bspwm/master/screenshots/right.png)
+
+- Sound levels
+Low ![alt tag](https://raw.githubusercontent.com/janpansa/bspwm/master/screenshots/sound_low.png)
+Normal ![alt tag](https://raw.githubusercontent.com/janpansa/bspwm/master/screenshots/sound_normal.png)
+Muted ![alt tag](https://raw.githubusercontent.com/janpansa/bspwm/master/screenshots/sound_muted.png)
+
 System Specs:
 
 - OS: Arch Linux
@@ -20,9 +33,9 @@ System Specs:
 
 Screenshot 1 : Music Desktop
 
-![alt tag](https://raw.githubusercontent.com/janpansa/bspwm/master/screenshots/2016-02-02-213031_2560x1440_scrot.png)
+![alt tag](https://raw.githubusercontent.com/janpansa/bspwm/master/screenshots/music_desk.png)
 
-Screenshot 2 : Busy Windows :)
+Screenshot 2 : Terminal Split
 
-![alt tag](https://github.com/janpansa/bspwm/raw/master/screenshots/2016-02-02-214654_2560x1440_scrot.png)
+![alt tag](https://raw.githubusercontent.com/janpansa/bspwm/master/screenshots/terminals.png)
 
