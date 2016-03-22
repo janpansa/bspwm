@@ -1,6 +1,7 @@
 #! /bin/sh
 
 ICON_FONT="FontAwesome:size=8"
+#TEMP_FONT "Open Sans:size=8"
 
 if [ $(pgrep -cx panel) -gt 1 ] ; then
 	printf "%s\n" "The panel is already running." >&2
@@ -18,7 +19,9 @@ xtitle -sf 'T%s' > "$PANEL_FIFO" &
 
 LIGHTGREY="%{F#FFC5C8C6}"
 LIGHTRED="%{F#FFCC6666}"
-LIGHTBLUE="%{F#FF64979C}"
+
+# this is green/blue
+LIGHTBLUE="%{F#FF2fd496}"
 
 panel_volume()
 {
@@ -86,12 +89,14 @@ music()
 #clock
 while true; do
 							#S vir time output in panel
-              echo -e 'S' $(music)   $(panel_volume) $LIGHTBLUE'\uf073'$LIGHTGREY $(date +'%a %d %b %p')$LIGHTBLUE'\uf017'$LIGHTGREY $(date +'%H:%M %p')
+              echo -e 'S' $(music)'     '$(panel_volume)'     '$LIGHTBLUE'\uf073'$LIGHTGREY $(date +'%a %d %b %p')'     '$LIGHTBLUE'\uf017'$LIGHTGREY $(date +'%H:%M %p')
 done > "$PANEL_FIFO" &
 
 #Include panel colors
 . panel_colors
-
+#cat "$PANEL_FIFO" | panel_bar | lemonbar -g 2560x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -f "$ICON_FONT" -F "$$
 cat "$PANEL_FIFO" | panel_bar | lemonbar -g 2560x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -f "$ICON_FONT" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
+
+#cat "$PANEL_FIFO" | panel_bar | lemonbar -g 2560x$PANEL_HEIGHT -f "$TEMP_FONT" -f "$ICON_FONT" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
 
 wait
