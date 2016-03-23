@@ -1,5 +1,5 @@
 # bspwm
-My bspwmrc config files. I am no expert, please don't judge me >_<
+My bspwmrc config files (dotfiles). I am no expert, please don't judge me >_<
 
 - [my **bspwm** repo](https://github.com/janpansa/bspwm)
 - [my **sxhkd** repo](https://github.com/janpansa/sxhkd)
