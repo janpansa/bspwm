@@ -6,7 +6,6 @@ My bspwmrc config files. I am no expert, please don't judge me >_<
 - [my **ncmpcpp** repo](https://github.com/janpansa/ncmpcpp)
 
 Panel:
-
 - Left side (Unoccupied, Current, Occupied)
 ![alt tag](https://raw.githubusercontent.com/janpansa/bspwm/master/screenshots/left.png)
 
